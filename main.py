@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import speech_recognition as sr
-faceCascade = cv2.CascadeClassifier('ha/haarcascade_frontalface_default.xml')
+faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 cap = cv2.VideoCapture(0) # 웹캠 설정
 cap.set(3, 960) # 영상 가로길이 설정
 cap.set(4, 480) # 영상 세로길이 설정
