@@ -6,8 +6,10 @@ import spshi
 
 music_start = '노래 재생'
 hi_start = '인사'
-retry = '다시해'
+retry = '다시'
 order = ['명령:','입력완료']
+CapTure = '사진'
+End='종료'
 
 faceCascade = cv2.CascadeClassifier('ha/haarcascade_frontalface_default.xml')
 cap = cv2.VideoCapture(0) # 웹캠 설정
@@ -29,7 +31,6 @@ while True:
                 checkid=1
         cv2.imshow('divx', frame)
         if checkid==1:
-            cap.release()
             cv2.destroyAllWindows()
         k = cv2.waitKey(1) & 0xff
         if k == 27:
@@ -48,7 +49,12 @@ while True:
                 elif r2==hi_start:
                     hi=spshi.hi()
                     hi.start()
-                
+                elif r2==CapTure:
+                    ret, frame = cap.read()
+                    cv2.imwrite("c.jpg",frame)
+                elif r2==End:
+                    cap.release()
+                    break
             
             except:
                 print(retry)
