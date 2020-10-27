@@ -36,7 +36,7 @@ while True:
             audio_text = r.listen(source)
             try:
                 print("입력완료")
-                r2=r.recognize_google(audio_text,lauage='ko-KR')
+                r2=r.recognize_google(audio_text,language='ko-KR')
                 print(r2)
                 if r2=="노래":
                     music = spsmusic.music()
