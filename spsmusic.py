@@ -3,8 +3,8 @@ import speech_recognition as sr
 
 class music:
     def __init__(self):
-        self.filename1= 'Dawn.mp3'
-        self.filename2= 'Tomorrow.mp3'
+        self.filename1= 'music/Dawn.mp3'
+        self.filename2= 'music/Tomorrow.mp3'
         self.initMixer()
         self.r = sr.Recognizer()
         self.playmusic(self.filename1)
