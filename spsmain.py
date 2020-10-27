@@ -1,12 +1,15 @@
 import numpy as np
 import cv2
 import speech_recognition as sr
-faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+import spsmusic
+import spshi
+faceCascade = cv2.CascadeClassifier('ha/haarcascade_frontalface_default.xml')
 cap = cv2.VideoCapture(0) # 웹캠 설정
 cap.set(3, 960) # 영상 가로길이 설정
 cap.set(4, 480) # 영상 세로길이 설정
 checkid=0
 r = sr.Recognizer()
+musicstart = ['노래 틀어','노래 재생']
 while True:
     if checkid==0 :
         ret, frame = cap.read() 
@@ -21,6 +24,7 @@ while True:
         cv2.imshow('divx', frame)
         if checkid==1:
             print("접속")
+            cap.release()
             cv2.destroyAllWindows()
         k = cv2.waitKey(1) & 0xff
         if k == 27:
@@ -30,12 +34,18 @@ while True:
             r.adjust_for_ambient_noise(source)
             print("명령입력")
             audio_text = r.listen(source)
-            print("입력완료")
             try:
-                print(r.recognize_google(audio_text,language='ko-KR'))
-                #모든 명령은 여기서 결정합니다.
+                print("입력완료")
+                r2=r.recognize_google(audio_text,lauage='ko-KR')
+                print(r2)
+                if r2=="노래":
+                    music = spsmusic.music()
+                elif r2=="손":
+                    hi=hi()
+                    hi.start()
+                
+            
             except:
                 print("제대로 말해주시죠?")
-        
-cap.release() 
-cv2.destroyAllWindows()
+
+
